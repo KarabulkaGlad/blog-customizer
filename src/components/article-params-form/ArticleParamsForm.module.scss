@@ -1,10 +1,22 @@
+.wrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 50px;
+	box-sizing: border-box;
+	height: auto;
+	min-height: 100%;
+	padding: 50px 30px;
+}
+
 .container {
 	position: fixed;
 	left: 0;
 	width: 616px;
 	height: 100%;
-	overflow: scroll;
-	transform: translate(-616px);
+	overflow-y: scroll;
+	background-color: #ffffff;
+	border-right: 1px solid #000000;
+	transform: translate(-617px);
 	transition: transform 0.5s ease;
 }
 
@@ -14,15 +26,11 @@
 
 .form {
 	display: flex;
-	flex-shrink: 0;
+	flex-grow: 1;
 	flex-direction: column;
+	gap: 50px;
 	box-sizing: border-box;
-	width: 616px;
-	height: auto;
-	min-height: 100%;
-	padding: 50px 31px;
-	background-color: #ffffff;
-	border-right: 1px solid #000000;
+	width: 100%;
 }
 
 .bottomContainer {
