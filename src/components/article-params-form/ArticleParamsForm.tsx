@@ -7,7 +7,7 @@ import { Text } from 'src/ui/text';
 import styles from './ArticleParamsForm.module.scss';
 import { useRef, useState } from 'react';
 import clsx from 'clsx';
-import { useOutsideClickClose } from 'src/ui/select/hooks/useOutsideClickClose';
+import { useOutsideClickClose } from 'src/hooks/useOutsideClickClose';
 import { Select } from 'src/ui/select';
 import {
 	ArticleStateType,
@@ -22,11 +22,10 @@ import {
 
 type ArticleParamsFormProps = {
 	onChange: (state: ArticleStateType) => void;
-	onClear: () => void;
 };
 
 export const ArticleParamsForm = (props: ArticleParamsFormProps) => {
-	const { onChange, onClear } = props;
+	const { onChange } = props;
 	const [isOpen, setIsOpen] = useState(false);
 	const [formState, setFormState] = useState(defaultArticleState);
 
@@ -62,6 +61,10 @@ export const ArticleParamsForm = (props: ArticleParamsFormProps) => {
 						onSubmit={(e) => {
 							e.preventDefault();
 							onChange(formState);
+						}}
+						onReset={() => {
+							setFormState(defaultArticleState);
+							onChange(defaultArticleState);
 						}}>
 						<Select
 							title={'шрифт'}
@@ -107,15 +110,7 @@ export const ArticleParamsForm = (props: ArticleParamsFormProps) => {
 							}></Select>
 
 						<div className={styles.bottomContainer}>
-							<Button
-								title='Сбросить'
-								htmlType='reset'
-								type='clear'
-								onClick={() => {
-									setFormState(defaultArticleState);
-									onClear();
-								}}
-							/>
+							<Button title='Сбросить' htmlType='reset' type='clear' />
 							<Button title='Применить' htmlType='submit' type='apply' />
 						</div>
 					</form>
