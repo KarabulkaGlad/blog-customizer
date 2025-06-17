@@ -25,6 +25,8 @@ type TextProps = {
 	family?: FontFamiliesClasses;
 	/** Булевая пропса, делает динамическим только семью шрифтов и цвет */
 	dynamicLite?: boolean;
+	/** Дополнительные классы от пользователя */
+	className?: string;
 };
 
 export const Text = ({
@@ -38,8 +40,9 @@ export const Text = ({
 	align = 'left',
 	family = 'open-sans',
 	dynamicLite = false,
+	className = '',
 }: TextProps) => {
-	const className = clsx(
+	const combinedClassName = clsx(
 		styles.text,
 		styles[`size${size}`],
 		{ [styles.dynamic]: dynamic },
@@ -48,7 +51,8 @@ export const Text = ({
 		{ [styles.uppercase]: uppercase },
 		styles[`${align}`],
 		styles[`${family}`],
-		{ [styles.dynamicLite]: dynamicLite }
+		{ [styles.dynamicLite]: dynamicLite },
+		className
 	);
-	return <Tag className={className}>{children}</Tag>;
+	return <Tag className={combinedClassName}>{children}</Tag>;
 };
